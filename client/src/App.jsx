@@ -11,6 +11,7 @@ import Leave from './pages/Leave'
 import Payslips from './pages/Payslips'
 import Settings from './pages/Settings'
 import PrintPayslip from './pages/PrintPayslip'
+
 const App = () => {
   return (
     <>
