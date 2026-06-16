@@ -109,7 +109,7 @@ export const dummyEmployeeData = [
         joinDate: "2000-01-20T00:00:00.000Z",
         image: null,
         isDeleted: false,
-        bio: "Hi, I am dev a full stack web developer",
+        bio: "Hi, I am Anup a full stack web developer",
         createdAt: "2026-03-13T13:32:22.013Z",
         updatedAt: "2026-03-13T13:33:20.498Z",
         id: "69b411e6f8a807df391d7b13",

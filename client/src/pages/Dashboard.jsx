@@ -5,6 +5,8 @@ import { dummyAdminDashboardData } from '../assets/assets'
 import Loading from '../components/Loading'
 import EmployeeDashboard from '../components/EmployeeDashboard'
 import AdminDashboard from '../components/AdminDashboard'
+import { useCallback } from 'react'
+
 
 /*dashboard*/
 const Dashboard = () => {
@@ -13,7 +15,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setData(dummyEmployeeDashboardData)
+    setData(dummyAdminDashboardData) //change to dummyEmployeeDashboardData to test employee dashboard
     setTimeout(() => {
       setLoading(false)
     }, 1000)
