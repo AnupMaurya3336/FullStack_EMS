@@ -1,4 +1,4 @@
-import Employee from "../models/Employee";
+import Employee from "../models/Employee.js";
 
 //Get profile
 // GET/api/profile
@@ -21,7 +21,7 @@ export const getProfile = async (req, res) => {
 }
 
 
-//Update prifile
+//Update profile
 // PUT/api/profile
 export const updateProfile = async (req, res) => {
     try {
@@ -31,7 +31,7 @@ export const updateProfile = async (req, res) => {
 
         if (employee.isDeleted) {
             return res.status(403).json({ error:
-                 "Your account is deactivated. you cannit update your profile.", });
+                 "Your account is deactivated. You can not update your profile.", });
         }
         await Employee.findByIdAndUpdate(employee._id,{
             bio:req.body.bio
