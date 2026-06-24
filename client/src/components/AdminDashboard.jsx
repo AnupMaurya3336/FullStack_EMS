@@ -24,7 +24,7 @@ const AdminDashboard = ({ data }) => {
         },
         {
             icon: FileTextIcon,
-            value: data.pendingLeave,
+            value: data.pendingLeaves,
             label: "Pending Leave ",
             description: "Awaiting approval",
         },

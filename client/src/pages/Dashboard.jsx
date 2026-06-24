@@ -1,11 +1,9 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
-import { dummyEmployeeDashboardData } from '../assets/assets'
-import { dummyAdminDashboardData } from '../assets/assets'
-import Loading from '../components/Loading'
-import EmployeeDashboard from '../components/EmployeeDashboard'
+import toast from "react-hot-toast"
+import api from "../api/axios"
 import AdminDashboard from '../components/AdminDashboard'
-import { useCallback } from 'react'
+import EmployeeDashboard from '../components/EmployeeDashboard'
+import Loading from '../components/Loading'
 
 
 /*dashboard*/
@@ -15,18 +13,19 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setData(dummyAdminDashboardData) //change to dummyEmployeeDashboardData to test employee dashboard
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
+    api.get('/dashboard').then((res) =>
+      setData(res.data)).catch((err) => toast.error(
+        err.response?.data?.error || err?.message
+      )).finally(() => setLoading(false))
   }, [])
 
   if (loading) return <Loading />
-  if(!data) return <p className="text-center text-slate-500 py-12">Failed to load dashboard</p>
+  if (!data) return <p className="text-center text-slate-500 py-12">
+    Failed to load dashboard</p>
 
-  if(data.role === "ADMIN") {
-    return <AdminDashboard data={data}/>
-  }else{
+  if (data.role === "ADMIN") {
+    return <AdminDashboard data={data} />
+  } else {
     return <EmployeeDashboard data={data} />
   }
 

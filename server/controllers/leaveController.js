@@ -47,7 +47,7 @@ export const createLeave = async (req, res) => {
             data:{LeaveApplicationId:leave._id,}
         })
 
-        return res.status(404).json({ success: true, date: leave });
+        return res.status(201).json({ success: true, data: leave });
 
 
     } catch (error) {
@@ -63,7 +63,7 @@ export const getLeaves = async (req, res) => {
     try {
         const session = req.session;
         const isAdmin = session.role === "ADMIN";
-        if (!isAdmin) {
+        if (isAdmin) {
             const status = req.query.status;
             const where = status ? { status } : {};
             const leaves = await LeaveApplication.find(where).
@@ -81,7 +81,7 @@ export const getLeaves = async (req, res) => {
         } else {
             const employee = await Employee.findOne({
                 userId: session.userId,
-            }).learn();
+            }).lean();
             if (!employee) return res.status(404).json({ error: "Not found" });
 
             const leaves = await LeaveApplication.find({

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 //Login for employee and admin
 
 // POST /api /auth/login
-export const login = async (requestAnimationFrame, res) => {
+export const login = async (req, res) => {
     try {
         const { email, password, role_type } = req.body;
         if (!email || !password) {
@@ -23,7 +23,7 @@ export const login = async (requestAnimationFrame, res) => {
             return res.status(401).json({ error: "Not authorized as employee" })
         }
 
-        const isValid = await bcrypt.cpmpare(password, user.password)
+        const isValid = await bcrypt.compare(password, user.password)
         if (!isValid) {
             return res.status(401).json({ error: "Invalid credentials" })
         }

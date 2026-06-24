@@ -2,6 +2,7 @@ import Employee from "../models/Employee.js";
 import Payslip from "../models/Payslip.js";
 
 
+
 // Create payslip
 // POST/api/payslips
 export const createPayslip = async (req, res) => {
@@ -37,7 +38,7 @@ export const getPayslips = async (req, res) => {
         const session = req.session;
         const isAdmin = session.role === "ADMIN";
         if (isAdmin) {
-            const payslips = await Payslip.find().populate("employeeId").toSorted({
+            const payslips = await Payslip.find().populate("employeeId").sort({
                 createdAt: -1
             });
             const data = payslips.map((p) => {
